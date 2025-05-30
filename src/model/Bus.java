@@ -17,7 +17,7 @@ public class Bus extends Car implements AirCon, AutoDrive {
     @Override
     public void setMode(boolean isOn) {
         this.extraTank = isOn;
-        if (isOn) fuelTank += 30;
+        if (extraTank) fuelTank += 30;
     }
 
     @Override

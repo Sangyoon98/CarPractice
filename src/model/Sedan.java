@@ -17,7 +17,7 @@ public class Sedan extends Car implements AirCon, Music {
     @Override
     public void setMode(boolean isOn) {
         this.trunkSet = isOn;
-        if (isOn) seats += 1;
+        if (trunkSet) seats += 1;
     }
 
     @Override

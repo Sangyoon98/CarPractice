@@ -17,9 +17,7 @@ public class SportCar extends Car implements Music, AutoDrive {
     @Override
     public void setMode(boolean isOn) {
         this.turbo = isOn;
-        if (isOn) {
-            speed *= 1.2;
-        }
+        if (turbo) speed *= 1.2;
     }
 
     @Override

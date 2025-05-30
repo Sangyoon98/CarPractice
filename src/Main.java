@@ -15,13 +15,6 @@ public class Main {
         // 이동 지역 선택
         System.out.print("이동 지역 선택 [1]부산 [2]대전 [3]강릉 [4]광주: ");
         int location = sc.nextInt();
-        int distance = switch (location) {
-            case 1 -> 400;
-            case 2 -> 150;
-            case 3 -> 200;
-            case 4 -> 300;
-            default -> 0;
-        };
 
         // 승객 수 입력
         System.out.print("이동할 승객 수 입력: ");
@@ -38,9 +31,9 @@ public class Main {
         // 날씨 선택
         System.out.print("날씨 [1]맑음 [2]비 [3]눈: ");
         int weather = sc.nextInt();
+        sc.nextLine();
 
         // 차량 이름 입력
-        sc.nextLine();
         System.out.print("차량 이름 입력: ");
         String carName = sc.nextLine();
 
@@ -56,14 +49,14 @@ public class Main {
         car.setMode(mode);
 
         // 선택기능 옵션 여부 설정
-        if (car instanceof Music m) m.musicOn();
-        if (car instanceof AirCon a) a.airConOn();
-        if (car instanceof AutoDrive ad) ad.autoDriveOn();
+        if (car instanceof Music music) music.musicOn();
+        if (car instanceof AirCon airCon) airCon.airConOn();
+        if (car instanceof AutoDrive autoDrive) autoDrive.autoDriveOn();
 
         // 이동 횟수
         int trip = car.getTripCount(people);
         // 총 이동거리
-        double totalDist = car.getTotalDistance(distance, trip);
+        double totalDist = car.getTotalDistance(location, trip);
         // 총 연료 소모량
         double fuelUsed = car.getTotalFuelUsed(totalDist);
         //총 주유 횟수
@@ -71,9 +64,9 @@ public class Main {
         // 총 비용
         double cost = car.getCost(fuelUsed);
         // 이동 시간
-        double time = car.getTravelTime(distance, trip, weather);
+        double time = car.getTravelTime(location, trip, weather);
 
-        System.out.println("======= " + car.name + " =======");
+        System.out.println("=======" + car.name + "=======");
         System.out.printf("총 비용: %,d원%n", (int) cost);
         System.out.println("총 주유 횟수: " + refuel + "회");
         System.out.printf("총 이동 시간: %.1f시간%n", time);
