@@ -67,7 +67,7 @@ public class Main {
 
         System.out.println();
         System.out.println("=======" + car.name + "=======");
-        System.out.printf("총 비용: %,d원%n", (int) cost);
+        System.out.printf("총 비용: %,d원\n", (int) cost);
         System.out.println("총 주유 횟수: " + refuel + "회");
         System.out.println("총 이동 시간: " + time);
     }
