@@ -1,4 +1,5 @@
 package option;
 
-public class Music {
+public interface Music {
+    void musicOn();
 }

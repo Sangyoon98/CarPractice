@@ -1,4 +1,5 @@
 package option;
 
-public class AutoDrive {
+public interface AutoDrive {
+    void autoDriveOn();
 }

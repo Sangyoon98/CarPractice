@@ -1,4 +1,5 @@
 package option;
 
-public class AirCon {
+public interface AirCon {
+    void airConOn();
 }
