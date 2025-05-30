@@ -33,15 +33,11 @@ public class Main {
         int weather = sc.nextInt();
         sc.nextLine();
 
-        // 차량 이름 입력
-        System.out.print("차량 이름 입력: ");
-        String carName = sc.nextLine();
-
         // Car 객체 결정
         Car car = switch (carType) {
-            case 1 -> new SportCar(carName);
-            case 2 -> new Sedan(carName);
-            case 3 -> new Bus(carName);
+            case 1 -> new SportCar();
+            case 2 -> new Sedan();
+            case 3 -> new Bus();
             default -> throw new IllegalStateException("Unexpected value: " + carType); // 예외 검출
         };
 
@@ -49,9 +45,12 @@ public class Main {
         car.setMode(mode);
 
         // 선택기능 옵션 여부 설정
-        if (car instanceof Music music) music.musicOn();
+        car.printOption();
+
+        // 다운캐스팅ㅎㅎ
+        /*if (car instanceof Music music) music.musicOn();
         if (car instanceof AirCon airCon) airCon.airConOn();
-        if (car instanceof AutoDrive autoDrive) autoDrive.autoDriveOn();
+        if (car instanceof AutoDrive autoDrive) autoDrive.autoDriveOn();*/
 
         // 이동 횟수
         int trip = car.getTripCount(people);
@@ -64,11 +63,12 @@ public class Main {
         // 총 비용
         double cost = car.getCost(fuelUsed);
         // 이동 시간
-        double time = car.getTravelTime(location, trip, weather);
+        String time = car.getTravelTime(location, trip, weather);
 
+        System.out.println();
         System.out.println("=======" + car.name + "=======");
         System.out.printf("총 비용: %,d원%n", (int) cost);
         System.out.println("총 주유 횟수: " + refuel + "회");
-        System.out.printf("총 이동 시간: %.1f시간%n", time);
+        System.out.println("총 이동 시간: " + time);
     }
 }

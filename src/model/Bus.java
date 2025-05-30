@@ -6,8 +6,9 @@ import option.AutoDrive;
 public class Bus extends Car implements AirCon, AutoDrive {
     private boolean extraTank;
 
-    public Bus(String name) {
-        super(name);
+    public Bus() {
+        super();
+        this.name = "현대 유니버스";
         this.efficiency = 5;
         this.speed = 150;
         this.fuelTank = 100;
@@ -18,6 +19,12 @@ public class Bus extends Car implements AirCon, AutoDrive {
     public void setMode(boolean isOn) {
         this.extraTank = isOn;
         if (extraTank) fuelTank += 30;
+    }
+
+    @Override
+    public void printOption() {
+        airConOn();
+        autoDriveOn();
     }
 
     @Override

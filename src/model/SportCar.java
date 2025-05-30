@@ -6,8 +6,9 @@ import option.Music;
 public class SportCar extends Car implements Music, AutoDrive {
     private boolean turbo;
 
-    public SportCar(String name) {
-        super(name);
+    public SportCar() {
+        super();
+        this.name = "제네시스 X SPEEDIUM COUPE";
         this.efficiency = 8;
         this.speed = 250;
         this.fuelTank = 30;
@@ -18,6 +19,12 @@ public class SportCar extends Car implements Music, AutoDrive {
     public void setMode(boolean isOn) {
         this.turbo = isOn;
         if (turbo) speed *= 1.2;
+    }
+
+    @Override
+    public void printOption() {
+        autoDriveOn();
+        musicOn();
     }
 
     @Override

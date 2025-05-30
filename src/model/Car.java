@@ -8,12 +8,11 @@ public abstract class Car {
     int seats;
     public String name;
 
-    Car(String name) {
-        this.name = name;
-    }
-
     // 모드 설정
     public abstract void setMode(boolean isOn);
+
+    // 옵션 출력
+    public abstract void printOption();
 
     // 이동 지역 별 거리 환산
     private int getDistance(int location) {
@@ -52,12 +51,15 @@ public abstract class Car {
     }
 
     // 이동 시간 계산
-    public double getTravelTime(int location, int tripCount, int weatherFactor) {
+    public String getTravelTime(int location, int tripCount, int weatherFactor) {
         double weatherValue = switch (weatherFactor) {
             case 2 -> 1.2;
             case 3 -> 1.4;
             default -> 1.0;
         };
-        return (getDistance(location) / (double) speed) * tripCount * weatherValue;
+        double totalHours = (getDistance(location) / (double) speed) * tripCount * weatherValue;
+        int hours = (int) totalHours;
+        int minutes = (int) Math.round((totalHours - hours) * 60);
+        return hours + "시간 " + minutes + "분";
     }
 }
