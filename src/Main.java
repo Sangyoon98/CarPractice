@@ -2,9 +2,6 @@ import model.Bus;
 import model.Car;
 import model.Sedan;
 import model.SportCar;
-import option.AirCon;
-import option.AutoDrive;
-import option.Music;
 
 import java.util.Scanner;
 
@@ -13,25 +10,38 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // 이동 지역 선택
-        System.out.print("이동 지역 선택 [1]부산 [2]대전 [3]강릉 [4]광주: ");
-        int location = sc.nextInt();
+        int location;
+        do {
+            System.out.print("이동 지역 선택 [1]부산 [2]대전 [3]강릉 [4]광주: ");
+            location = sc.nextInt();
+        } while (location < 1 || location > 4);
 
         // 승객 수 입력
         System.out.print("이동할 승객 수 입력: ");
         int people = sc.nextInt();
 
         // 차량 종류 선택
-        System.out.print("이동할 차량 선택 [1]스포츠카 [2]승용차 [3]버스: ");
-        int carType = sc.nextInt();
+        int carType;
+        do {
+            System.out.print("이동할 차량 선택 [1]스포츠카 [2]승용차 [3]버스: ");
+            carType = sc.nextInt();
+        } while (carType < 1 || carType > 3);
 
         // 부가기능
-        System.out.print("부가기능 [1]ON [2]OFF: ");
-        boolean mode = sc.nextInt() == 1;
+        int modeInput = 0;
+        do {
+            System.out.print("부가기능 [1]ON [2]OFF: ");
+            modeInput = sc.nextInt();
+        } while (modeInput < 1 || modeInput > 2);
+        boolean mode = modeInput == 1;
 
         // 날씨 선택
-        System.out.print("날씨 [1]맑음 [2]비 [3]눈: ");
-        int weather = sc.nextInt();
-        sc.nextLine();
+        int weather;
+        do {
+            System.out.print("날씨 [1]맑음 [2]비 [3]눈: ");
+            weather = sc.nextInt();
+            sc.nextLine();
+        } while (weather < 1 || weather > 3);
 
         // Car 객체 결정
         Car car = switch (carType) {
@@ -46,11 +56,6 @@ public class Main {
 
         // 선택기능 옵션 여부 설정
         car.printOption();
-
-        // 다운캐스팅ㅎㅎ
-        /*if (car instanceof Music music) music.musicOn();
-        if (car instanceof AirCon airCon) airCon.airConOn();
-        if (car instanceof AutoDrive autoDrive) autoDrive.autoDriveOn();*/
 
         // 이동 횟수
         int trip = car.getTripCount(people);
